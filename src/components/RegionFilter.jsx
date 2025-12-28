@@ -1,5 +1,4 @@
 import { Listbox } from '@headlessui/react'
-import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
@@ -12,8 +11,7 @@ const regions = [
   'Oceania',
 ]
 
-export default function RegionFilter() {
-  const [selected, setSelected] = useState(null)
+export default function RegionFilter({ selected, setSelected }) {
 
   return (
     <div className="relative w-64 text-sm focus-within:ring-2 focus-within:ring-violet-500 rounded-md">
@@ -25,7 +23,7 @@ export default function RegionFilter() {
                      focus:outline-none"
         >
           <span>
-            {selected ?? 'Filter by Region'}
+            {selected && selected !== 'All' ? selected : 'Filter by Region'}
           </span>
 
           <FontAwesomeIcon
