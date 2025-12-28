@@ -1,35 +1,49 @@
 import { useState, useEffect } from 'react';
-import { useParams  } from "react-router";
-import { fetchCountryByName } from '../services/countriesApi';
+import { useParams, Link, useNavigate  } from "react-router";
+import { fetchCountryByName, fetchCountryByCode } from '../services/countriesApi';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
 export default function CountryDetail() {
   let { name } = useParams();
+  let navigate = useNavigate();
   const [country, setCountry] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [borderNames, setBorderNames] = useState([]);
 
   useEffect(() => {
     const loadCountry = async () => {
       try {
         const data = await fetchCountryByName(name)
         setCountry(data);
+
+        if (data.borders) {
+            const names = await Promise.all(
+                data.borders.map(code => fetchCountryByCode(code))
+            );
+            setBorderNames(names)
+        }
       } catch (error) {
         console.error(error);
       } finally {
         setLoading(false);
       }
     };
-    loadCountry();
+
+    if (name) { 
+        loadCountry();
+    }
   }, [name]);
 
   if (loading) return <div>Loading...</div>;
   if (!country) return <div>Country not found</div>;
 
   return (
-    <section className="w-screen h-screen bg-neutral-100 flex flex-col gap-6 pt-16 p-10 
+    <section className="w-screen h-screen bg-neutral-100 flex flex-col gap-6 pt-16 pl-10 pb-4
                         font-nunito overflow-hidden">
-        <button className="bg-white w-32 h-10 flex justify-center items-center 
+        <button
+            onClick={() => navigate(-1)} 
+            className="bg-white w-32 h-10 flex justify-center items-center 
                         gap-2 rounded-sm shadow-(--button-shadow) cursor-pointer"
                         >
             <FontAwesomeIcon 
@@ -71,13 +85,21 @@ export default function CountryDetail() {
                         }</p>
                     </div>
                 </div>
-                <div className="flex gap-4 pt-4 text-lg text-gray-800">
-                    <p>Border Countries:</p> 
-                    <button className="bg-white w-32 h-10 flex justify-center items-center gap-2 
-                                rounded-sm shadow-(--button-shadow) cursor-pointer"
-                                >{
-                                    country.borders ? country.borders.join(', ') : 'None'
-                    }</button>
+                <div className="flex flex-row flex-wrap items-center gap-4 pt-4 text-lg text-gray-800">
+                    <p className="font-light">Border Countries:</p> 
+                    {borderNames.length > 0 
+                    ? (borderNames.map((borderName, index) => (
+                        <Link key={index} to={`/country/${borderName}`}>
+                            <button
+                                className="bg-white px-6 h-8 flex justify-center items-center gap-2 
+                                        rounded-sm shadow-(--button-shadow) text-base font-light cursor-pointer overflow-hidden"
+                            > {borderName}
+                            </button>
+                        </Link>
+                        ))) 
+                    : (
+                    <span className="text-base font-medium">None</span>
+                    )}  
                 </div>
             </div>
         </div>

@@ -10,7 +10,12 @@ export default function CountriesList() {
         const loadCountries = async () => {
             try {
                 const data = await fetchAllCountries()
-                setCountries(data)
+
+                const sortedData = data.sort((a, b) => 
+                    a.name.common.localeCompare(b.name.common)
+                );
+                
+                setCountries(sortedData)
             } catch (error) {
                 console.error(error)
             } finally {
