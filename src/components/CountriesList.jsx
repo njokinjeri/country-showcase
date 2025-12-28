@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchAllCountries } from '../services/countriesApi';
 import CountryCard from './CountryCard';
+import Loading from "./Loading";
 
 export default function CountriesList({ selectedRegion, searchCountry }) {
     const [countries, setCountries] = useState([]);
@@ -25,7 +26,7 @@ export default function CountriesList({ selectedRegion, searchCountry }) {
         loadCountries();
     }, []);
 
-    if (loading) return <div>Loading...</div>
+    if (loading) return <Loading className="justify-start"/> 
 
     let filteredCountries = countries
 

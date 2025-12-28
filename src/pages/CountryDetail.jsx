@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate  } from "react-router";
 import Header from "../components/Header";
+import Loading from "../components/Loading";
 import { fetchCountryByName, fetchCountryByCode } from '../services/countriesApi';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
@@ -36,7 +37,8 @@ export default function CountryDetail() {
     }
   }, [name]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Loading className="justify-center"/> 
+
   if (!country) return <div>Country not found</div>;
 
   return (
