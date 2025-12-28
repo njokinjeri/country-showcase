@@ -7,7 +7,7 @@ export default function App() {
     <>
         <Routes>
             <Route path="/" element={<Home />}></Route>
-            <Route path="/country" element={<CountryDetail />}></Route>
+            <Route path="/country/:name" element={<CountryDetail />}></Route>
         </Routes>
     </>
   )

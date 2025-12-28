@@ -1,4 +1,4 @@
-const BASE_URL = 'https://restcountries.com/v3.1/all';
+const BASE_URL = 'https://restcountries.com/v3.1';
 
 const FIELDS = [
     'flags',
@@ -6,12 +6,11 @@ const FIELDS = [
     'currencies',
     'languages',
     'name',
-    'nativeName',
     'population', 
     'region',
     'subregion',
     'borders',
-    'topLevelDomain'
+    'tld'
 ];
 
 const fetchFromAPI = async (endpoint) => {
@@ -21,7 +20,7 @@ const fetchFromAPI = async (endpoint) => {
         const response = await fetch(url);
 
         if (!response.ok) {
-            throw Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
 
         const data = await response.json();
@@ -32,7 +31,7 @@ const fetchFromAPI = async (endpoint) => {
     }
 };
 
-export const fetchALLCountries = () => fetchFromAPI('/all');
+export const fetchAllCountries = () => fetchFromAPI('/all');
 
 export const fetchCountryByName = async (name) => {
     const data = await fetchFromAPI(`/name/${name}`);

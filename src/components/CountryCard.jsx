@@ -1,5 +1,20 @@
-export default function CountryCard () {
+import { Link } from "react-router"
+
+export default function CountryCard ({ flag, name, population, region, capital }) {
   return (
-    <div>CountryCard</div>
+    <Link to={`/country/${name}`}>
+      <div className="w-72 h-84 bg-white rounded-lg shadow-md">
+        <img 
+          className="w-full h-40 object-cover rounded-t-lg overflow-hidden"
+          src={flag} 
+          alt={`${name} flag`} />
+        <div className="p-6 ">
+          <h1 className="max-h-16 text-xl font-bold pb-4">{name}</h1>
+          <p><strong>Population:</strong> {population}</p>
+          <p><strong>Region:</strong> {region}</p>
+          <p><strong>Capital:</strong> {capital}</p>
+        </div>
+      </div>
+    </Link>
   )
 }
