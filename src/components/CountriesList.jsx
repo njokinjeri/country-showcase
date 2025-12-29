@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
-import { fetchAllCountries } from '../services/countriesApi';
-import CountryCard from './CountryCard';
-import Loading from "./Loading";
+import { useState, useEffect } from 'react'
+import { fetchAllCountries } from '../services/countriesApi'
+import CountryCard from './CountryCard'
+import Loading from "./Loading"
 
 export default function CountriesList({ selectedRegion, searchCountry }) {
-    const [countries, setCountries] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [countries, setCountries] = useState([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const loadCountries = async () => {
@@ -14,7 +14,7 @@ export default function CountriesList({ selectedRegion, searchCountry }) {
 
                 const sortedData = data.sort((a, b) => 
                     a.name.common.localeCompare(b.name.common)
-                );
+                )
 
                 setCountries(sortedData)
             } catch (error) {
@@ -22,9 +22,9 @@ export default function CountriesList({ selectedRegion, searchCountry }) {
             } finally {
                 setLoading(false)
             }
-        };
-        loadCountries();
-    }, []);
+        }
+        loadCountries()
+    }, [])
 
     if (loading) return <Loading className="justify-start"/> 
 
@@ -33,13 +33,13 @@ export default function CountriesList({ selectedRegion, searchCountry }) {
     if (selectedRegion && selectedRegion !== 'All') {
         filteredCountries = filteredCountries.filter(
             country => country.region === selectedRegion
-        );
+        )
     }
 
     if (searchCountry) {
         filteredCountries = filteredCountries.filter(
             country => country.name.common.toLowerCase().includes(searchCountry.toLowerCase())
-        );
+        )
     }
 
 
@@ -63,5 +63,5 @@ export default function CountriesList({ selectedRegion, searchCountry }) {
                 )
             }
         </div>
-    );
+    )
 }

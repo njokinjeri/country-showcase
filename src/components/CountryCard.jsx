@@ -3,7 +3,7 @@ import { Link } from "react-router"
 export default function CountryCard ({ flag, name, population, region, capital }) {
   return (
     <Link to={`/country/${name}`}>
-      <div className="w-72 h-84 bg-white rounded-lg shadow-md hover:outline-1 hover:outline-violet-500">
+      <div className="dark:bg-gray-800 dark:text-white w-72 h-84 bg-white rounded-lg shadow-md hover:outline-1 hover:outline-violet-500">
         <img 
           className="w-full h-40 object-cover rounded-t-lg overflow-hidden"
           src={flag} 

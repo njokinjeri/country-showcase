@@ -1,5 +1,5 @@
-import {Routes, Route} from "react-router";
-import Home from "./pages/Home";
+import {Routes, Route} from "react-router"
+import Home from "./pages/Home"
 import CountryDetail from "./pages/CountryDetail"
 
 export default function App() {
@@ -7,6 +7,7 @@ export default function App() {
     <>
         <Routes>
             <Route path="/" element={<Home />}></Route>
+            <Route path="/country" element={<Home />}></Route>
             <Route path="/country/:name" element={<CountryDetail />}></Route>
         </Routes>
     </>

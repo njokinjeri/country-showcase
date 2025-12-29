@@ -17,7 +17,7 @@ export default function RegionFilter({ selected, setSelected }) {
     <div className="relative w-64 text-sm focus-within:ring-2 focus-within:ring-violet-500 rounded-md">
       <Listbox value={selected} onChange={setSelected}>
         <Listbox.Button
-          className="relative w-full h-14 bg-white rounded-md shadow-sm
+          className="dark:bg-gray-800 dark:text-gray-200 relative w-full h-14 bg-white rounded-md shadow-sm
                      px-4 flex items-center justify-between
                      text-gray-900 tracking-wider font-nunito
                      focus:outline-none"
@@ -28,12 +28,12 @@ export default function RegionFilter({ selected, setSelected }) {
 
           <FontAwesomeIcon
             icon={faChevronDown}
-            className="text-gray-600"
+            className="dark:text-gray-200  text-gray-600"
           />
         </Listbox.Button>
 
         <Listbox.Options
-          className="absolute z-10 mt-2 w-full
+          className="dark:bg-gray-800 dark:text-white absolute z-10 mt-2 w-full
                      bg-white rounded-md shadow-lg
                      overflow-hidden focus:outline-none"
         >
@@ -43,7 +43,7 @@ export default function RegionFilter({ selected, setSelected }) {
               value={region}
               className={({ focus }) =>
                 `cursor-pointer px-4 py-2
-                 ${focus ? 'bg-gray-200' : ''}`
+                 ${focus ? 'bg-gray-200 dark:bg-gray-600' : ''}`
               }
             >
               {region}
