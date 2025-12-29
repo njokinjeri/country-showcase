@@ -2,7 +2,7 @@
   --loader-color: #000;
 }
 
-[data-theme="dark"] {
+.dark {
   --loader-color: #fff;
 }
 
