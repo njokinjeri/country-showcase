@@ -2,6 +2,8 @@
 
 ![Country Showcase Challenge preview](./src/assets/design-desktop-light.png)
 
+**Live Site**: *https://country-showcase.netlify.app/*
+
 Users should be able to:
 
 - See all countries from the API on the homepage
