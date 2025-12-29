@@ -1,6 +1,9 @@
 :root {
-  color-scheme: light dark;
   --loader-color: #000;
+}
+
+[data-theme="dark"] {
+  --loader-color: #fff;
 }
 
 .loader {
@@ -46,11 +49,4 @@
 
 @keyframes rotate {
   to{transform: translate(-50%, -55%) rotate(-45deg) rotateY(360deg)   }
-}
-
-
-@media (prefers-color-scheme: dark) {
-  :root {
-      --loader-color: #fff;
-  }
 }

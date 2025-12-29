@@ -65,9 +65,9 @@ export default function CountryDetail() {
                     alt={`${country.name.common} flag`} 
                 />
                 <div className="flex flex-col justify-center gap-4 lg:pl-10">
-                    <h1 className="text-xl font-bold">{country.name.common}</h1>
+                    <h1 className="dark:text-gray-100 text-gray-800 text-xl font-bold">{country.name.common}</h1>
                     <div className="flex flex-col gap-4 dark:text-gray-100 text-gray-800 text-base/7 md:flex-row md:items-start md:gap-10">
-                        <div className="w-1/2">
+                        <div className="md:w-1/2">
                             <p><strong>Native Name:</strong> {
                                 country.name.nativeName 
                                 ? Object.values(country.name.nativeName)[0].common
